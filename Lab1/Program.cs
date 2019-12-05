@@ -104,23 +104,57 @@ namespace Lab1
             else
             {
                 // solving quadratic equation
+                bool solutionFound = true;
+
                 double discr = B * B - 4 * A * C;
                 if (discr > 0)
                 {
+                    int i = 1;
+
                     double res1 = (-B + Math.Sqrt(discr)) / (2 * A);
+                    if (res1 > 0)
+                    {
+                        res1 = Math.Sqrt(res1);
+                        i += 2;
+
+                        Console.WriteLine($"x1 = {res1}");
+                        Console.WriteLine($"x2 = -{res1}");
+                    }
+                    else if (res1 == 0)
+                    {
+                        i += 1;
+                        Console.WriteLine("x1 = 0");
+                    }
+
                     double res2 = (-B - Math.Sqrt(discr)) / (2 * A);
+                    if (res2 > 0)
+                    {
+                        res2 = Math.Sqrt(res2);
 
-                    Console.WriteLine($"x1 = {res1}");
-                    Console.WriteLine($"x2 = {res2}");
+                        Console.WriteLine($"x{i} = {res2}");
+                        Console.WriteLine($"x{i+1} = -{res2}");
+                    }
+                    else if (res2 == 0 && res1 != 0)
+                    {
+                        Console.WriteLine($"x{i} = 0");
+                    }
 
+                    solutionFound = (res1 >= 0 || res2 >= 0);
                 }
                 else if (discr == 0)
                 {
                     double res = -B / (2 * A);
+                    if (res > 0)
+                    {
+                        res = Math.Sqrt(res);
 
-                    Console.WriteLine($"x = {res}");
+                        Console.WriteLine($"x1 = {res}");
+                        Console.WriteLine($"x2 = -{res}");
+                    }
+                    else solutionFound = false;
                 }
-                else
+
+                if (discr < 0 || !solutionFound)
                 {
                     // red because no solutions
                     Console.ForegroundColor = badColor;
