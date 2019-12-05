@@ -14,16 +14,61 @@ namespace Lab1
             Console.Title = "Daniil Kalamin -- IU5-34";
             Console.ForegroundColor = ConsoleColor.Green;
 
-            bool test = double.TryParse(args[0], out double A);
-            test &= double.TryParse(args[1], out double B);
-            test &= double.TryParse(args[2], out double C);
+            string[] input = args;
 
-            if (!test)
+            int lenRead = input.Length;
+
+            bool argsFound = (lenRead > 0);
+            bool test = false;
+
+            double A, B, C;
+            A = B = C = 0;
+
+            do
             {
-                Console.WriteLine("Please enter A, B and C koeffs.");
-                return 1;
-            }
+                if (lenRead == 1 && (input[0] == "c" || input[0] == "C"))
+                {
+                    Console.WriteLine("Exiting the program...");
 
+                    Console.ReadKey();
+                    return 0;
+                }
+
+                if (!argsFound)
+                {
+                    Console.WriteLine("(TIP: divide numbers with space, fraction parts with comma)");
+                    Console.Write("Input A, B and C koeffs >> ");
+
+                    input = (Console.ReadLine()).Split(' ');
+                    lenRead = input.Length;
+                    //foreach (string str in input) Console.WriteLine(str);
+                }
+                else argsFound = false;
+
+                
+                if (lenRead > 3)
+                {
+                    Console.WriteLine("Found more than 3 input values... Cut to 3 first.");
+                }
+                else if (lenRead < 3)
+                {
+                    Console.WriteLine("Found less than 3 input values...");
+                    Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
+                    
+                    continue;
+                }
+
+                test = double.TryParse(input[0], out A);
+                test &= double.TryParse(input[1], out B);
+                test &= double.TryParse(input[2], out C);
+
+                if (!test)
+                {
+                    Console.WriteLine("Incorrect input...");
+                    Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
+                }
+            } while (!test);
+            
             if (A == 0)
             {
                 if (B == 0)
@@ -67,7 +112,7 @@ namespace Lab1
                     Console.WriteLine("No real solutions");
                 }
             }
-
+            
             Console.ReadKey();
             return 0;
         }
