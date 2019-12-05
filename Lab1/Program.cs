@@ -11,7 +11,12 @@ namespace Lab1
     {
         static int Main(string[] args)
         {
+            ConsoleColor defaultColor = ConsoleColor.White;
+            ConsoleColor okColor = ConsoleColor.Green;
+            ConsoleColor badColor = ConsoleColor.Red;
+
             Console.Title = "Daniil Kalamin -- IU5-34";
+            Console.ForegroundColor = defaultColor;
 
             string[] input = args;
 
@@ -75,7 +80,7 @@ namespace Lab1
             } while (!test);
 
             // green by defaul as the majority of outputs show solutions
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = okColor;
             if (A == 0)
             {
                 if (B == 0)
@@ -114,20 +119,21 @@ namespace Lab1
                 else
                 {
                     // red because no solutions
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = badColor;
                     Console.WriteLine("No real solutions");
                 }
 
-                Console.ForegroundColor = ConsoleColor.Black;
+                // discr show question
+                Console.ForegroundColor = defaultColor;
                 Console.Write("Do you want to output discriminant? (y/any other symb)>> ");
-                char answer = (char)Console.Read();
 
+                char answer = (char)Console.Read();
                 if (answer == 'y' || answer == 'Y')
                 {
                     Console.WriteLine($"D = {discr}");
                 }
             }
-            
+
             Console.ReadKey();
             return 0;
         }
