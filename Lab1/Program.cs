@@ -26,14 +26,6 @@ namespace Lab1
 
             do
             {
-                if (lenRead == 1 && (input[0] == "c" || input[0] == "C"))
-                {
-                    Console.WriteLine("Exiting the program...");
-
-                    Console.ReadKey();
-                    return 0;
-                }
-
                 if (!argsFound)
                 {
                     Console.WriteLine("(TIP: divide numbers with space, fraction parts with comma)");
@@ -42,6 +34,14 @@ namespace Lab1
                     input = (Console.ReadLine()).Split(' ');
                     lenRead = input.Length;
                     //foreach (string str in input) Console.WriteLine(str);
+
+                    if (lenRead == 1 && (input[0] == "c" || input[0] == "C"))
+                    {
+                        Console.WriteLine("Exiting the program...");
+
+                        Console.ReadKey();
+                        return 0;
+                    }
                 }
                 else argsFound = false;
 
