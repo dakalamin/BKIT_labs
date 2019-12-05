@@ -12,6 +12,7 @@ namespace Lab1
         static int Main(string[] args)
         {
             Console.Title = "Daniil Kalamin -- IU5-34";
+            Console.ForegroundColor = ConsoleColor.Green;
 
             bool test = double.TryParse(args[0], out double A);
             test &= double.TryParse(args[1], out double B);
@@ -62,6 +63,7 @@ namespace Lab1
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No real solutions");
                 }
             }
