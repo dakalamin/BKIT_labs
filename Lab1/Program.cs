@@ -12,7 +12,6 @@ namespace Lab1
         static int Main(string[] args)
         {
             Console.Title = "Daniil Kalamin -- IU5-34";
-            Console.ForegroundColor = ConsoleColor.Green;
 
             string[] input = args;
 
@@ -68,7 +67,8 @@ namespace Lab1
                     Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
                 }
             } while (!test);
-            
+
+            Console.ForegroundColor = ConsoleColor.Green;
             if (A == 0)
             {
                 if (B == 0)
