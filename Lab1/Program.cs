@@ -89,8 +89,7 @@ namespace Lab1
                     double res = -C / B;
 
                     Console.WriteLine("(not actually a quadratic equation)");
-                    Console.Write("x = ");
-                    Console.WriteLine(res);
+                    Console.WriteLine($"x = {res}");
                 }
             }
             else
@@ -102,18 +101,15 @@ namespace Lab1
                     double res1 = (-B + Math.Sqrt(discr)) / (2 * A);
                     double res2 = (-B - Math.Sqrt(discr)) / (2 * A);
 
-                    Console.Write("x1 = ");
-                    Console.WriteLine(res1);
-                    Console.Write("x2 = ");
-                    Console.WriteLine(res2);
+                    Console.WriteLine($"x1 = {res1}");
+                    Console.WriteLine($"x2 = {res2}");
 
                 }
                 else if (discr == 0)
                 {
                     double res = -B / (2 * A);
 
-                    Console.Write("x = ");
-                    Console.WriteLine(res);
+                    Console.WriteLine($"x = {res}");
                 }
                 else
                 {
