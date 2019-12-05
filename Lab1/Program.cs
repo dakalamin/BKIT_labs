@@ -94,11 +94,26 @@ namespace Lab1
                 }
                 else
                 {
-                    // solving linear equation
-                    double res = -C / B;
+                    // solving quadratic equation
+                    double res = -C;
 
-                    Console.WriteLine("(not actually a quadratic equation)");
-                    Console.WriteLine($"x = {res}");
+                    Console.WriteLine("(actually a quadratic equation)");
+                    if (res > 0)
+                    { 
+                        res = Math.Sqrt(res);
+                        Console.WriteLine($"x1 = {res}");
+                        Console.WriteLine($"x2 = -{res}");
+                    }
+                    else if (res == 0)
+                    {
+                        Console.WriteLine($"x = 0");
+                    }
+                    else
+                    {
+                        // red because no solutions
+                        Console.ForegroundColor = badColor;
+                        Console.WriteLine("No real solutions");
+                    }
                 }
             }
             else
