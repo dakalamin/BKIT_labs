@@ -44,7 +44,8 @@ namespace Lab1
                     // a chance to exit the program
                     if (lenRead == 1 && (input[0] == "c" || input[0] == "C"))
                     {
-                        Console.WriteLine("Exiting the program...");
+                        Console.WriteLine("Exiting the program.");
+                        Console.Write("\nPress any button...");
 
                         Console.ReadKey();
                         return 0;
@@ -134,6 +135,7 @@ namespace Lab1
                 }
             }
 
+            Console.Write("\nPress any button...");
             Console.ReadKey();
             return 0;
         }
