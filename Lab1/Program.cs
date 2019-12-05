@@ -16,7 +16,6 @@ namespace Lab1
             ConsoleColor badColor = ConsoleColor.Red;
 
             Console.Title = "Daniil Kalamin -- IU5-34";
-            Console.ForegroundColor = defaultColor;
 
             string[] input = args;
 
@@ -30,6 +29,8 @@ namespace Lab1
 
             do
             {
+                Console.ForegroundColor = defaultColor;
+
                 /* repeated input attemps 
                  * (first - if 'args' input was incorrect,
                  *   than - if it itself was again incorrect)    */
@@ -62,9 +63,10 @@ namespace Lab1
                 else if (lenRead < 3)
                 {
                     // not ok, no point to parse input -> straight to next 'do' iteration
+                    Console.ForegroundColor = badColor;
                     Console.WriteLine("Found less than 3 input values...");
                     Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
-                    
+
                     continue;
                 }
 
@@ -75,6 +77,7 @@ namespace Lab1
 
                 if (!test)
                 {
+                    Console.ForegroundColor = badColor;
                     Console.WriteLine("Incorrect input...");
                     Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
                 }
@@ -126,7 +129,7 @@ namespace Lab1
 
                 // discr show question
                 Console.ForegroundColor = defaultColor;
-                Console.Write("Do you want to output discriminant? (y/any other symb)>> ");
+                Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
 
                 char answer = (char)Console.Read();
                 if (answer == 'y' || answer == 'Y')
