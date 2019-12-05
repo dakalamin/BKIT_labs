@@ -117,6 +117,15 @@ namespace Lab1
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No real solutions");
                 }
+
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write("Do you want to output discriminant? (y/any other symb)>> ");
+                char answer = (char)Console.Read();
+
+                if (answer == 'y' || answer == 'Y')
+                {
+                    Console.WriteLine($"D = {discr}");
+                }
             }
             
             Console.ReadKey();
