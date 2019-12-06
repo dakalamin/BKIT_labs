@@ -13,7 +13,7 @@ namespace Lab1
         public static ConsoleColor BadColor = ConsoleColor.Red;
 
         // simple cnsl output with chosen color, then reset to prev
-        static void DisplayClr(string output, ConsoleColor pushedColor, bool forceDflt=false)
+        static void DisplayClrd(string output, ConsoleColor pushedColor, bool forceDflt=false)
         {
             Console.ForegroundColor = pushedColor;
             Console.WriteLine(output);
@@ -28,7 +28,7 @@ namespace Lab1
             if (res > 0)
             {
                 res = Math.Sqrt(res);
-                DisplayClr($"x{ xNum } = { res}\n" + 
+                DisplayClrd($"x{ xNum } = { res}\n" + 
                            $"x{xNum+1} = {-res}",
                            OkColor);
 
@@ -38,7 +38,7 @@ namespace Lab1
             {
                 if (xNum != 2)
                 {
-                    DisplayClr($"x{ xNum } = 0",
+                    DisplayClrd($"x{ xNum } = 0",
                                OkColor);
                 }
                 xNum += 1;
@@ -97,7 +97,7 @@ namespace Lab1
                 else if (lenRead < 3)
                 {
                     // not ok, no point to parse input -> straight to next 'do' iteration
-                    DisplayClr("Found less than 3 input values...\n" + 
+                    DisplayClrd("Found less than 3 input values...\n" + 
                                "Please try again (TIP: type 'c' or 'C' to exit).\n",
                                BadColor);
 
@@ -111,7 +111,7 @@ namespace Lab1
 
                 if (!test)
                 {
-                    DisplayClr("Incorrect input...\n" +
+                    DisplayClrd("Incorrect input...\n" +
                                "Please try again (TIP: type 'c' or 'C' to exit).\n",
                                BadColor);
                 }
@@ -128,7 +128,7 @@ namespace Lab1
                     Console.WriteLine("(not actually an equation)");
                     if (C == 0)
                     {
-                        DisplayClr("x - is any real number",
+                        DisplayClrd("x - is any real number",
                                    OkColor);
                     }
                     else solutionFound = false;
@@ -158,7 +158,7 @@ namespace Lab1
                 else solutionFound = false;
             }
 
-            if (!solutionFound) DisplayClr("No real solutions", BadColor);
+            if (!solutionFound) DisplayClrd("No real solutions", BadColor);
 
             if (A != 0)
             {
