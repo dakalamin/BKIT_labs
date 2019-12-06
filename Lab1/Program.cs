@@ -85,12 +85,21 @@ namespace Lab1
 
             // green by defaul as the majority of outputs show solutions
             Console.ForegroundColor = okColor;
+
+            double discr = 0;
+
+            bool solutionFound = true;
             if (A == 0)
             {
                 if (B == 0)
                 {
                     Console.WriteLine("(not actually an equation)");
-                    Console.WriteLine("x - is any real number");
+
+                    if (C == 0)
+                    {
+                        Console.WriteLine("x - is any real number");
+                    }
+                    else solutionFound = false;
                 }
                 else
                 {
@@ -119,9 +128,7 @@ namespace Lab1
             else
             {
                 // solving quadratic equation
-                bool solutionFound = true;
-
-                double discr = B * B - 4 * A * C;
+                discr = B * B - 4 * A * C;
                 if (discr > 0)
                 {
                     int i = 1;
@@ -147,7 +154,7 @@ namespace Lab1
                         res2 = Math.Sqrt(res2);
 
                         Console.WriteLine($"x{i} = {res2}");
-                        Console.WriteLine($"x{i+1} = -{res2}");
+                        Console.WriteLine($"x{i + 1} = -{res2}");
                     }
                     else if (res2 == 0 && res1 != 0)
                     {
@@ -168,23 +175,24 @@ namespace Lab1
                     }
                     else solutionFound = false;
                 }
+                else solutionFound = false;
+            }
 
-                if (discr < 0 || !solutionFound)
-                {
-                    // red because no solutions
-                    Console.ForegroundColor = badColor;
-                    Console.WriteLine("No real solutions");
-                }
+            if (!solutionFound)
+            {
+                // red because no solutions
+                Console.ForegroundColor = badColor;
+                Console.WriteLine("No real solutions");
+            }
 
-                // discr show question
-                Console.ForegroundColor = defaultColor;
-                Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
+            // discr show question
+            Console.ForegroundColor = defaultColor;
+            Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
 
-                char answer = (char)Console.Read();
-                if (answer == 'y' || answer == 'Y')
-                {
-                    Console.WriteLine($"D = {discr}");
-                }
+            char answer = (char)Console.Read();
+            if (answer == 'y' || answer == 'Y')
+            {
+                Console.WriteLine($"D = {discr}");
             }
 
             Console.Write("\nPress any button...");
