@@ -185,14 +185,17 @@ namespace Lab1
                 Console.WriteLine("No real solutions");
             }
 
-            // discr show question
-            Console.ForegroundColor = defaultColor;
-            Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
-
-            char answer = (char)Console.Read();
-            if (answer == 'y' || answer == 'Y')
+            if (A != 0)
             {
-                Console.WriteLine($"D = {discr}");
+                // discr show question
+                Console.ForegroundColor = defaultColor;
+                Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
+
+                char answer = (char)Console.Read();
+                if (answer == 'y' || answer == 'Y')
+                {
+                    Console.WriteLine($"D = {discr}");
+                }
             }
 
             Console.Write("\nPress any button...");
