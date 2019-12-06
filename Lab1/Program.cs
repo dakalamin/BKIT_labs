@@ -143,8 +143,10 @@ namespace Lab1
                 else
                 {
                     // solving quadratic equation
+                    discr = -4 * B * C;
+
                     Console.WriteLine("(actually a quadratic equation)");
-                    solutionFound = Solution(-C, ref ind);
+                    solutionFound = Solution((-C / B), ref ind);
                 }
             }
             else
@@ -167,7 +169,7 @@ namespace Lab1
 
             if (!solutionFound) DisplayClrd("No real solutions", BadColor);
 
-            if (A != 0)
+            if (!(A == 0 && B == 0))
             {
                 // discr show question
                 Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
