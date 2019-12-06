@@ -6,16 +6,52 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-
     class Program
     {
+        public static ConsoleColor DefaultColor = ConsoleColor.White;
+        public static ConsoleColor OkColor = ConsoleColor.Green;
+        public static ConsoleColor BadColor = ConsoleColor.Red;
+
+        // simple cnsl output with chosen color, then reset to prev
+        static void DisplayClr(string output, ConsoleColor pushedColor, bool forceDflt=false)
+        {
+            Console.ForegroundColor = pushedColor;
+            Console.WriteLine(output);
+
+            Console.ForegroundColor = DefaultColor;
+        }
+
+        static bool Solution(double res, ref int xNum)
+        {
+            bool solutionFound = true;
+
+            if (res > 0)
+            {
+                res = Math.Sqrt(res);
+                DisplayClr($"x{ xNum } = { res}\n" + 
+                           $"x{xNum+1} = {-res}",
+                           OkColor);
+
+                xNum += 2;
+            }
+            else if (res == 0)
+            {
+                if (xNum != 2)
+                {
+                    DisplayClr($"x{ xNum } = 0",
+                               OkColor);
+                }
+                xNum += 1;
+            }
+            else solutionFound = false;
+
+            return solutionFound;
+        }
+
         static int Main(string[] args)
         {
-            ConsoleColor defaultColor = ConsoleColor.White;
-            ConsoleColor okColor = ConsoleColor.Green;
-            ConsoleColor badColor = ConsoleColor.Red;
-
             Console.Title = "Daniil Kalamin -- IU5-34";
+            Console.ForegroundColor = DefaultColor;
 
             string[] input = args;
 
@@ -29,8 +65,6 @@ namespace Lab1
 
             do
             {
-                Console.ForegroundColor = defaultColor;
-
                 /* repeated input attemps 
                  * (first - if 'args' input was incorrect,
                  *   than - if it itself was again incorrect)    */
@@ -63,9 +97,9 @@ namespace Lab1
                 else if (lenRead < 3)
                 {
                     // not ok, no point to parse input -> straight to next 'do' iteration
-                    Console.ForegroundColor = badColor;
-                    Console.WriteLine("Found less than 3 input values...");
-                    Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
+                    DisplayClr("Found less than 3 input values...\n" + 
+                               "Please try again (TIP: type 'c' or 'C' to exit).\n",
+                               BadColor);
 
                     continue;
                 }
@@ -77,16 +111,14 @@ namespace Lab1
 
                 if (!test)
                 {
-                    Console.ForegroundColor = badColor;
-                    Console.WriteLine("Incorrect input...");
-                    Console.WriteLine("Please try again (TIP: type 'c' or 'C' to exit).\n");
+                    DisplayClr("Incorrect input...\n" +
+                               "Please try again (TIP: type 'c' or 'C' to exit).\n",
+                               BadColor);
                 }
             } while (!test);
-
-            // green by defaul as the majority of outputs show solutions
-            Console.ForegroundColor = okColor;
-
+            
             double discr = 0;
+            int ind = 1; // DO NOT SHANGE - initial xNum val for Solution()
 
             bool solutionFound = true;
             if (A == 0)
@@ -94,101 +126,43 @@ namespace Lab1
                 if (B == 0)
                 {
                     Console.WriteLine("(not actually an equation)");
-
                     if (C == 0)
                     {
-                        Console.WriteLine("x - is any real number");
+                        DisplayClr("x - is any real number",
+                                   OkColor);
                     }
                     else solutionFound = false;
                 }
                 else
                 {
                     // solving quadratic equation
-                    double res = -C;
-
                     Console.WriteLine("(actually a quadratic equation)");
-                    if (res > 0)
-                    { 
-                        res = Math.Sqrt(res);
-                        Console.WriteLine($"x1 = {res}");
-                        Console.WriteLine($"x2 = -{res}");
-                    }
-                    else if (res == 0)
-                    {
-                        Console.WriteLine($"x = 0");
-                    }
-                    else
-                    {
-                        // red because no solutions
-                        Console.ForegroundColor = badColor;
-                        Console.WriteLine("No real solutions");
-                    }
+                    solutionFound = Solution(-C, ref ind);
                 }
             }
             else
             {
-                // solving quadratic equation
+                // solving biquadratic equation
                 discr = B * B - 4 * A * C;
                 if (discr > 0)
                 {
-                    int i = 1;
+                    bool localSF1 = Solution((-B + Math.Sqrt(discr)) / (2 * A), ref ind);
+                    bool localSF2 = Solution((-B - Math.Sqrt(discr)) / (2 * A), ref ind);
 
-                    double res1 = (-B + Math.Sqrt(discr)) / (2 * A);
-                    if (res1 > 0)
-                    {
-                        res1 = Math.Sqrt(res1);
-                        i += 2;
-
-                        Console.WriteLine($"x1 = {res1}");
-                        Console.WriteLine($"x2 = -{res1}");
-                    }
-                    else if (res1 == 0)
-                    {
-                        i += 1;
-                        Console.WriteLine("x1 = 0");
-                    }
-
-                    double res2 = (-B - Math.Sqrt(discr)) / (2 * A);
-                    if (res2 > 0)
-                    {
-                        res2 = Math.Sqrt(res2);
-
-                        Console.WriteLine($"x{i} = {res2}");
-                        Console.WriteLine($"x{i + 1} = -{res2}");
-                    }
-                    else if (res2 == 0 && res1 != 0)
-                    {
-                        Console.WriteLine($"x{i} = 0");
-                    }
-
-                    solutionFound = (res1 >= 0 || res2 >= 0);
+                    solutionFound = (localSF1 || localSF2);
                 }
                 else if (discr == 0)
                 {
-                    double res = -B / (2 * A);
-                    if (res > 0)
-                    {
-                        res = Math.Sqrt(res);
-
-                        Console.WriteLine($"x1 = {res}");
-                        Console.WriteLine($"x2 = -{res}");
-                    }
-                    else solutionFound = false;
+                    solutionFound = Solution(-B / (2 * A), ref ind);
                 }
                 else solutionFound = false;
             }
 
-            if (!solutionFound)
-            {
-                // red because no solutions
-                Console.ForegroundColor = badColor;
-                Console.WriteLine("No real solutions");
-            }
+            if (!solutionFound) DisplayClr("No real solutions", BadColor);
 
             if (A != 0)
             {
                 // discr show question
-                Console.ForegroundColor = defaultColor;
                 Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
 
                 char answer = (char)Console.Read();
