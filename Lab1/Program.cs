@@ -15,10 +15,14 @@ namespace Lab1
         // simple cnsl output with chosen color, then reset to prev
         static void DisplayClrd(string output, ConsoleColor pushedColor, bool forceDflt=false)
         {
+            // if forced to default, will return to DefaultColor of the class else prev read
+            // makes possible to use it inside cnsl output block of non-default color
+            ConsoleColor pulledColor = forceDflt ? DefaultColor : Console.ForegroundColor;
+
             Console.ForegroundColor = pushedColor;
             Console.WriteLine(output);
 
-            Console.ForegroundColor = DefaultColor;
+            Console.ForegroundColor = pulledColor;
         }
 
         static bool Solution(double res, ref int xNum)
@@ -52,6 +56,9 @@ namespace Lab1
         {
             Console.Title = "Daniil Kalamin -- IU5-34";
             Console.ForegroundColor = DefaultColor;
+
+            /* uncomment below to demonstrate DisplayClrd() features */
+            // Console.ForegroundColor = ConsoleColor.Cyan; // can be any color
 
             string[] input = args;
 
@@ -88,7 +95,7 @@ namespace Lab1
                 }
                 else argsFound = false; // so the next time it will offer to repeat input
 
-                // length (num of elemrnts read) filter
+                // length (num of elements read) filter
                 if (lenRead > 3)
                 {
                     // it's ok, just ignore all extra elements
