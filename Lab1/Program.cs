@@ -29,23 +29,25 @@ namespace Lab1
         {
             bool solutionFound = true;
 
+            // finding and outputting 
+            // quadratic equation roots (with 'res' as discr)
             if (res > 0)
             {
                 res = Math.Sqrt(res);
                 DisplayClrd($"x{ xNum } = { res}\n" + 
-                           $"x{xNum+1} = {-res}",
-                           OkColor);
+                            $"x{xNum+1} = {-res}",
+                            OkColor);
 
-                xNum += 2;
+                xNum += 2; // so next output will show x3=...
             }
             else if (res == 0)
             {
-                if (xNum != 2)
+                if (xNum != 2) // if zero repeats, output only once
                 {
                     DisplayClrd($"x{ xNum } = 0",
-                               OkColor);
+                                OkColor);
                 }
-                xNum += 1;
+                xNum += 1; // so next output will show x2=...
             }
             else solutionFound = false;
 
@@ -105,8 +107,8 @@ namespace Lab1
                 {
                     // not ok, no point to parse input -> straight to next 'do' iteration
                     DisplayClrd("Found less than 3 input values...\n" + 
-                               "Please try again (TIP: type 'c' or 'C' to exit).\n",
-                               BadColor);
+                                "Please try again (TIP: type 'c' or 'C' to exit).\n",
+                                BadColor);
 
                     continue;
                 }
@@ -119,13 +121,13 @@ namespace Lab1
                 if (!test)
                 {
                     DisplayClrd("Incorrect input...\n" +
-                               "Please try again (TIP: type 'c' or 'C' to exit).\n",
-                               BadColor);
+                                "Please try again (TIP: type 'c' or 'C' to exit).\n",
+                                BadColor);
                 }
             } while (!test);
             
             double discr = 0;
-            int ind = 1; // DO NOT SHANGE - initial xNum val for Solution()
+            int ind = 1; // DO NOT CHANGE - initial xNum val for Solution()
 
             bool solutionFound = true;
             if (A == 0)
@@ -169,6 +171,7 @@ namespace Lab1
 
             if (!solutionFound) DisplayClrd("No real solutions", BadColor);
 
+            // if both A and B equal zero, no discr exists
             if (!(A == 0 && B == 0))
             {
                 // discr show question
