@@ -34,20 +34,20 @@ namespace Lab1
             if (res > 0)
             {
                 res = Math.Sqrt(res);
-                DisplayClrd($"x{ xNum } = { res}\n" + 
-                            $"x{xNum+1} = {-res}",
+                DisplayClrd($"x{xNum++} = { res}\n" + 
+                            $"x{xNum++} = {-res}",
                             OkColor);
-
-                xNum += 2; // so next output will show x3=...
+                // xNum++ twice, so next output will show x3=...
             }
             else if (res == 0)
             {
                 if (xNum != 2) // if zero repeats, output only once
                 {
-                    DisplayClrd($"x{ xNum } = 0",
+                    DisplayClrd($"x{xNum++} = 0",
                                 OkColor);
+                    // xNum++ once, so next output will show x2=...
                 }
-                xNum += 1; // so next output will show x2=...
+
             }
             else solutionFound = false;
 
@@ -175,7 +175,7 @@ namespace Lab1
             if (!(A == 0 && B == 0))
             {
                 // discr show question
-                Console.Write("\nDo you want to output discriminant? (y/any other symb)>> ");
+                Console.Write("\nDo you want to output discriminant? (y/any other symb) >> ");
 
                 char answer = (char)Console.Read();
                 if (answer == 'y' || answer == 'Y')
