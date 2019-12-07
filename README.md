@@ -3,3 +3,6 @@
 
 Input A, B and C koefficient values of Ax^4+Bx^2+C=0 equation as "Lab1.cs \<A\> \<B\> \<C\>"
 (divide fraction parts with comma).
+
+# Lab2
+<b>Basic program with primitive classes (+inheritance) and an interface</b>
