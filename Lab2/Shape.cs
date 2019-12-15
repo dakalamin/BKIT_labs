@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    public abstract class Shape
+    public abstract class Shape : IComparable
     {
         public string Type
         {
@@ -28,6 +28,15 @@ namespace Lab2
         public override string ToString()
         {
             return this.Type + " covers an area of " + this.Area().ToString();
+        }
+
+        public int CompareTo(object obj)
+        {
+            double objArea = ((Shape)obj).Area();
+
+            if      (this.Area() < objArea) return -1;
+            else if (this.Area() > objArea) return  1;
+            else return 0;
         }
     }
 }
