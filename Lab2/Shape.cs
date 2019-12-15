@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    abstract class Shape
+    public abstract class Shape
     {
         public string Type
         {

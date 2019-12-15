@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    class Rectangle : Shape, IPrint
+    public class Rectangle : Shape, IPrint
     {
         double height;
         double width;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    class Circle : Shape, IPrint 
+    public class Circle : Shape, IPrint 
     {
         double radius;
 
