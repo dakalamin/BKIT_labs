@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    public class Circle : Shape, IPrint 
+    public class Circle : Shape
     {
-        double radius;
-
-        /// <param name="pr"> radius </param>
-        public Circle(double pr)
+        private double radius;
+        public double Radius
         {
-            this.radius = pr;
-            this.Type = "Cicle shape";
+            get => radius;
+            protected set => Parse(value, out radius);
         }
 
-        public override double Area()
+        /// <param name="radius"> circle radius (strictly positive)</param>
+        public Circle(double radius) : base("Circle")
         {
-            double result = Math.PI * this.radius * this.radius;
-            return result;
+            this.Radius = radius;
         }
 
-        public void Print()
-        {
-            Console.WriteLine(this.ToString());
-        }
+        public override double Area => Math.PI * Radius * Radius;
+
+        public override void Print() => Print(Math.Round(Area, 2));
     }
 }

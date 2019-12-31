@@ -6,30 +6,33 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-    public class Rectangle : Shape, IPrint
+    public class Rectangle : Shape
     {
-        double height;
-        double width;
-        
-        /// <param name="ph">height</param>
-        /// <param name="pw">width</param>
-        public Rectangle(double ph, double pw)
+        private double height;
+        public double Height
         {
-            this.height = ph;
-            this.width = pw;
-            this.Type = "Rectangle shape";
+            get => height;
+            protected set => Parse(value, out height);
         }
+
+        private double width;
+        public double Width
+        {
+            get => width;
+            protected set => Parse(value, out width);
+        }
+
+        protected Rectangle(double height, double width, string type) : base(type)
+        {
+            this.Height = height;
+            this.Width = width;
+        }
+
+        /// <param name="height"> Rectangle height (strictly positive)</param>
+        /// <param name="width">  Rectangle width  (strictly positive)</param>
+        public Rectangle(double height, double width) : this(height, width, "Rectangle") { }
 
         /// <summary> Area calculation </summary>
-        public override double Area()
-        {
-            double result = this.width * this.height;
-            return result;
-        }
-
-        public void Print()
-        {
-            Console.WriteLine(this.ToString());
-        }
+        public override double Area => Width * Height;
     }
 }

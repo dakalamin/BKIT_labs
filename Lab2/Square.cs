@@ -8,9 +8,7 @@ namespace Lab2
 {
     public class Square : Rectangle
     {
-        public Square(double size) : base(size, size)
-        {
-            this.Type = "Square shape";
-        }
+        /// <param name="length"> square length (strictly positive)</param>
+        public Square(double length) : base(length, length, "Square") { }
     }
 }

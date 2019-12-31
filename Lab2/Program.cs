@@ -14,10 +14,11 @@ namespace Lab2
             Square  square = new Square(5);
             Circle  circle = new Circle(5);
 
-            rect.Print();
-            square.Print();
-            circle.Print();
+            Shape[] array = new Shape[3] { rect, square, circle };
 
+            foreach (Shape obj in array) obj.Print();
+
+            Console.Write("\nPress any button...");
             Console.ReadKey();
         }
     }
