@@ -1,0 +1,72 @@
+﻿<Window x:Class="Homework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework"
+        mc:Ignorable="d"
+        Title="Homework!" Height="Auto" Width="500" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Margin="5" Grid.Row="0" Grid.Column="0">
+            <Button x:Name="readBut" Height="30" Width="200" Content="Read from File" Click="onReadButton"/>
+            <Label x:Name="readTimeLabel" Content="Read Time: -" HorizontalAlignment="Center"/>
+            <Label Content="Enter word:"/>
+            <TextBox x:Name="searchWord" Margin="5" Height="25"></TextBox>
+        </StackPanel>
+
+        <Button x:Name="saveBut" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" 
+                Margin="5"
+                Height="30" Width="200" 
+                Content="Save Report" Click="onSaveButtonClick"/>
+
+        <StackPanel Margin="5" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom">
+            <Label Content="Enter threads quantity: "/>
+            <TextBox x:Name="threadCount" Margin="5" Height="25" Text="1"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Bottom">
+            <Label Content="Exact search"/>
+            <Button x:Name="searchBut" Margin="5" Height="30" Width="200" Content="Search" Click="onSearchButton"/>
+            <Label x:Name="searchTimeLabel" Content="Search time: -" />
+            <Label Content="Search result:" Grid.Column="1"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5" VerticalAlignment="Bottom">
+            <Label Content="Enter MaxValue:"/>
+            <TextBox x:Name="levMaxValue" Height="25" Margin="5"/>
+            <Button x:Name="searchBut5" Margin="5" Height="30" Width="200" Content="Search" Click="onSearchButtonLevenshtain"/>
+            <Label x:Name="searchTimeLabel5" Content="Search time: -" />
+            <Label Content="Search result: "/>
+        </StackPanel>
+        <ListBox Grid.Column="0" Grid.Row="2" x:Name="resultListBox" 
+                 ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                 Height="{Binding ElementName=LayoutRoot, Path=ActualHeight}"
+                 Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Word}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Grid.Column="1" Grid.Row="2" x:Name="resultListBox5" 
+                 ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                 Height="{Binding ElementName=LayoutRoot, Path=ActualHeight}"
+                 Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Word}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
