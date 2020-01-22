@@ -19,11 +19,12 @@ namespace Lab2
         public abstract double Area { get; }
 
         /// <summary> Setting to string </summary>
-        public override string ToString() => $"{Type} shape covers an area of ";
+        protected string ToString(double data) => $"{Type}: {data}";
+        public override string ToString() => this.ToString(Area);
 
         /// <summary> Console output </summary>
-        public void Print(double data) => Console.WriteLine(this.ToString() + data);
-        public virtual void Print()    => Print(Area);
+        protected void Print(double data) => Console.WriteLine($"{Type} shape covers an area of {data}");
+        public virtual void Print() => this.Print(Area);
 
         /// <summary> Filter - pass only positive vals </summary>
         protected void Parse(double value, out double property)
