@@ -1,0 +1,65 @@
+﻿<Window x:Class="Lab4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab4"
+        mc:Ignorable="d"
+        Title="Lab4 (ext. Lab5)" Height="Auto" Width="500" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Margin="5" Grid.Row="0" Grid.ColumnSpan="2">
+            <Button x:Name="readBut" Height="30" Width="200" Content="Read from File" Click="onReadButton"/>
+            <Label x:Name="readTimeLabel" Content="Read Time: -" HorizontalAlignment="Center"/>
+            <Label Content="Enter word:"/>
+            <TextBox x:Name="searchWord" Margin="5" Height="25"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Bottom">
+            <Label Content="Lab4 search"/>
+            <Button x:Name="searchBut" Margin="5" Height="30" Width="200" Content="Search" Click="onSearchButton"/>
+            <Label x:Name="searchTimeLabel4" Content="Search time: -" />
+            <Label Content="Search result:" Grid.Column="1"/>
+        </StackPanel>
+
+        <ListBox Grid.Column="0" Grid.Row="2" x:Name="resultListBox" 
+                 ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                 Height="{Binding ElementName=LayoutRoot, Path=ActualHeight}"
+                 Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Word}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5" VerticalAlignment="Bottom">
+            <Label Content="Enter max. distance value:"/>
+            <TextBox x:Name="levMaxValue" Height="25" Margin="5"/>
+            <RadioButton x:Name="defaultDistance" Content="Levenshtein distance" IsChecked="True" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="DamerawDistance"  Content="Damerau–Levenshtein distance" Checked="RadioButton_Checked"/>
+            <Button x:Name="searchBut5" Margin="5" Height="30" Width="200" Content="Search" Click="onSearchButtonLevenshtain"/>
+            <Label x:Name="searchTimeLabel5" Content="Search time: -" />
+            <Label Content="Search result: "/>
+        </StackPanel>
+        <ListBox x:Name="resultListBox5" Grid.Row="2" Grid.Column="1"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                 Height="{Binding ElementName=LayoutRoot, Path=ActualHeight}"
+                 Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Word}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
+
